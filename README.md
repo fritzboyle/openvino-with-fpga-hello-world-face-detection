@@ -1,6 +1,11 @@
-# openvino-with-fpga-hello-world-face-detection
+# OpenVINO with FPGA Hello World Face Detection Exercise
 
 **Note:** This tutorial has been written using OpenVINO™ Toolkit for Linux with FPGA Support version 2018 R3.0 and is for use with this version only. Using this tutorial with any other version may not be correct.
+
+# Table of Contents
+
+
+
 ##Introduction
 
 The purpose of this tutorial is to examine a sample application that was created using the Open Visual Inference & Neural Network Optimization (OpenVINO™) toolkit. The application is able to run inference models on the CPU, and optionally (must be available), GPU and VPU devices to process images. The models can be used to process video from an optional USB camera, an existing video file, or still image files. To do that, we will download the latest Face Detection Tutorial from GitHub and then walk through the sample code for each step before compiling and running on the the available hardware.
