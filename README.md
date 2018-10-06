@@ -152,3 +152,95 @@ We will program the bitstream with the command:
 ```
 aocl program acl0 /opt/intel/computer_vision_sdk_fpga_2018.3.343/a10_devkit_bitstreams/2-0-1_A10DK_FP11_ResNet50-101.aocx
 ```
+# Running the App
+We can to move up to the main level directory
+```
+cd ..
+```
+
+## Script Description
+We have provided a script that will select the media file, models and hardware to make these easily repeatable. The full commands are provided under each step as well if you would like to explore additional possibilities.
+
+`run_fd.sh` requires at least one hardware target, and supports up to 3
+
+### How To Use:
+```
+./run_fd.sh (face detection hardware) (age/gender hardware) (head pose hardware)
+```
+
+**Supported Hardware (choose 1 for each option):**
+1. cpu 
+2. gpu 
+3. fpga 
+
+**Targets (in order on command line):**
+1. 1st argument is required, for face detection
+2. 2nd argument, optional, for age & gender recognition
+3. 3rd argument, optional, requires face detection + age/gender recognition, for head pose
+
+You will see rectangles and the head pose axes that follow the faces around the image (if the faces move), accompanied by age and gender results for the faces, and the timing statistics for processing each frame of the video.
+
+
+## Example 1 - Run face detection on targeted hardware (CPU):
+```
+./run_fd.sh cpu
+```
+
+**Example 1 Full command**
+```
+build/intel64/Release/face_detection_tutorial -i /home/vino/Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP32/face-detection-retail-0004.xml -d CPU
+```
+
+
+## Example 2 - Run face detection on targeted hardware (FPGA):
+ ```
+ ./run_fd.sh fpga
+ ```
+
+**Example 2 Full command**
+```
+build/intel64/Release/face_detection_tutorial -i /home/vino/Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP16/face-detection-retail-0004.xml -d HETERO:FPGA,CPU
+```
+
+## Example 3 - Run face detection and age/gender recognition
+```
+./run_fd.sh fpga gpu
+```
+
+**Example 3 Full command**
+```build/intel64/Release/face_detection_tutorial -i /home/vino/Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP16/face-detection-retail-0004.xml -m_ag /opt/intel/computer_vision_sdk/deployment_tools/intel_models/age-gender-recognition-retail-0013/FP16/age-gender-recognition-retail-0013.xml -d HETERO:FPGA,CPU -d_ag GPU
+```
+
+## Example 4 - Run face detection, age/gender recognition, and head pose estimation
+```
+./run_fd.sh fpga gpu cpu
+```
+
+**Example 4 Full command**
+```
+build/intel64/Release/face_detection_tutorial -i /home/vino/Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP16/face-detection-retail-0004.xml -m_ag /opt/intel/computer_vision_sdk/deployment_tools/intel_models/age-gender-recognition-retail-0013/FP16/age-gender-recognition-retail-0013.xml -m_hp /opt/intel/computer_vision_sdk/deployment_tools/intel_models/head-pose-estimation-adas-0001/FP32/head-pose-estimation-adas-0001.xml -d HETERO:FPGA,CPU -d_ag GPU -d_hp CPU
+```
+
+
+## Example 5 - Run everything on cpu
+```
+./run_fd.sh cpu cpu cpu
+```
+
+**Example 5 Full command**
+```
+build/intel64/Release/face_detection_tutorial -i /home/vino/Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP32/face-detection-retail-0004.xml -m_ag /opt/intel/computer_vision_sdk/deployment_tools/intel_models/age-gender-recognition-retail-0013/FP32/age-gender-recognition-retail-0013.xml -m_hp /opt/intel/computer_vision_sdk/deployment_tools/intel_models/head-pose-estimation-adas-0001/FP32/head-pose-estimation-adas-0001.xml -d CPU -d_ag CPU -d_hp CPU
+```
+
+**NOTE:** The FPGA plugin does NOT support the head pose model.  If specified, it will be replaced with CPU.
+
+**Optional:** Finally, if a USB camera has been setup, we can use the application to view live video from the connected USB camera. The camera is the default source, so we do this by running the application without using any parameters.
+
+```
+./intel64/Release/face_detection_tutorial -m $mFDA32 -m_ag $mAG32 -m_hp $mHP32 -i cam
+```
+Or we can still specify the camera using "cam":
+```
+./intel64/Release/face_detection_tutorial -m $mFDA32 -m_ag $mAG32 -m_hp $mHP32
+```
+Again, you will see colored rectangles drawn around any faces that appear in the images along with the results for age, gender, the axes representing the head poses, and the various render statistics.
