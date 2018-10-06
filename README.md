@@ -4,7 +4,7 @@
 
 # Table of Contents
 
-<div class="table-of-contents"><ul><li><a href="#openvino-with-fpga-hello-world-face-detection-exercise">OpenVINO with FPGA Hello World Face Detection Exercise</a></li><li><a href="#table-of-contents">Table of Contents</a></li><li><a href="#introduction">Introduction</a></li><li><a href="#getting-started">Getting Started</a><ul><li><a href="#prerequisites">Prerequisites</a></li></ul></li><li><a href="#downloading-the-tutorial-from-the-git-repository">Downloading the Tutorial from the Git Repository</a><ul><li><a href="#option-1-using-git-clone-to-clone-the-entire-repository">Option #1: Using Git Clone to Clone the Entire Repository</a></li><li><a href="#option-2-using-svn-export-to-download-only-this-tutorial">Option #2: Using SVN Export to Download Only This Tutorial</a></li></ul></li><ul></li></ul><li><a href="#tutorial-files">Tutorial Files</a></li></ul><li><a href="#openvino-toolkit-overview-and-terminology">OpenVINO™ Toolkit Overview and Terminology</a><ul><li><a href="#using-the-inference-engine">Using the Inference Engine</a><ul><li><a href="#face-detection-sample">Face Detection Sample</a></li></ul></div>
+<div class="table-of-contents"><ul><li><a href="#openvino-with-fpga-hello-world-face-detection-exercise">OpenVINO with FPGA Hello World Face Detection Exercise</a></li><li><a href="#table-of-contents">Table of Contents</a></li><li><a href="#introduction">Introduction</a></li><li><a href="#getting-started">Getting Started</a><ul><li><a href="#prerequisites">Prerequisites</a></li></ul></li><li><a href="#downloading-the-tutorial-from-the-git-repository">Downloading the Tutorial from the Git Repository</a><ul><li><a href="#option-1-using-git-clone-to-clone-the-entire-repository">Option #1: Using Git Clone to Clone the Entire Repository</a></li><li><a href="#option-2-using-svn-export-to-download-only-this-tutorial">Option #2: Using SVN Export to Download Only This Tutorial</a></li></ul></li><ul></li></ul><li><a href="#tutorial-files">Tutorial Files</a></li></ul><li><a href="#openvino-toolkit-overview-and-terminology">OpenVINO™ Toolkit Overview and Terminology</a><ul><li><a href="#using-the-inference-engine">Using the Inference Engine</a><ul><li><a href="#face-detection-sample">Face Detection Sample</a></li></ul></li></ul><li><a href="build">Build</a></li></div>
 
 ## Introduction
 
@@ -49,24 +49,34 @@ The first thing we need to do is create a place for the Face Detection tutorial 
 ### Option #1: Using Git Clone to Clone the Entire Repository
 1.	Bring up a command shell prompt by opening a terminal (such as xterm) or selecting a terminal that is already open.
 2.	Create a "tutorials" directory where we can download the Face Detection tutorial and then change to it:
+```
 mkdir tutorials
 cd tutorials
+```
 3.	Clone the repository:
 git clone https://github.com/fritzboyle/openvino-with-fpga-hello-world-face-detection
 4.	Change to the top git repository and check out correct version:
-cd ********TBD
+cd **TBD**
 5.	Change to the face detection tutorial folder:
+```
 cd openvino-with-fpga-hello-world-face-detection
+```
 ### Option #2: Using SVN Export to Download Only This Tutorial
 
 1.	Bring up a command shell prompt by opening a terminal (such as xterm) or selecting a terminal that is already open.
 2.	Create a "tutorials" directory where we can download the Face Detection tutorial and then change to it:
+```
 mkdir -p tutorials/openvino-with-fpga-hello-world-face-detection
 cd tutorials/openvino-with-fpga-hello-world-face-detection
+```
 3.	Download the subdirectory for just this tutorial for the specific version from the repository:
+```
 svn export https://github.com/fritzboyle/openvino-with-fpga-hello-world-face-detection
+```
 4.	Change to the face detection tutorial folder:
+```
 cd openvino-with-fpga-hello-world-face-detection
+```
 Now that we have all the files for the Face Detection Tutorial, we can take some time to look through them to see what each part of the tutorial will demonstrate.
 # Tutorial Files
 In the "Tutorial" directory you will see:
