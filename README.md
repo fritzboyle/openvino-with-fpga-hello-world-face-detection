@@ -109,24 +109,36 @@ Now let us build and run the complete application and see how it runs all three 
 # Build
 Open up a terminal (such as xterm) or use an existing terminal to get to a command shell prompt.
 Change to the directory containing the Hello World files:
-`cd Downloads/tutorial`
+```
+cd Downloads/tutorial
+```
 
 First, we source variables in case it wasn’t done since the last reboot
-`source /home/<user>/setup_env.sh`
+```
+source /home/<user>/setup_env.sh
+```
 
 Now we need to create a directory to build the tutorial in and change to it.
-`mkdir build`
-`cd build`
+```
+mkdir build
+cd build
+```
 
 The last thing we need to do before compiling is to configure the build settings and build the executable. We do this by running CMake to set the build target and file locations. Then, we run Make to build the executable.
 
-`cmake -DCMAKE_BUILD_TYPE=Release ..`
-`make`
+```
+cmake -DCMAKE_BUILD_TYPE=Release ..
+make
+```
 
 **Optional:**We could instead run the make this using the following command to run across multiple pieces of hardware and speed up the process
-`make -j $(nproc)`
+```
+make -j $(nproc)
+```
 
 To prepare for running on the FPGA, we should load a bitstream that works well for object detection. OpenVINO Toolkit with support for FPGA includes some that we can use.
 
 We will program the bitstream with the command:
-`aocl program acl0 /opt/intel/computer_vision_sdk_fpga_2018.3.343/a10_devkit_bitstreams/2-0-1_A10DK_FP11_ResNet50-101.aocx`
+```
+aocl program acl0 /opt/intel/computer_vision_sdk_fpga_2018.3.343/a10_devkit_bitstreams/2-0-1_A10DK_FP11_ResNet50-101.aocx
+```
