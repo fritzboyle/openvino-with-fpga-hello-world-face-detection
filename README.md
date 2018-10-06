@@ -71,3 +71,30 @@ In the " openvino-with-fpga-hello-world-face-detection " directory you will see:
 * scripts\ - Common helper scripts
 * Readme.md - The top level of this tutorial (this page)
 * Others? **FROM DAVID’S FILE**
+
+# OpenVINO™ Toolkit Overview and Terminology
+Let us begin with a brief overview of the OpenVINO™ toolkit and what this tutorial will be covering. The OpenVINO™ toolkit enables the quick deployment of convolutional neural networks (CNN) for heterogeneous execution on Intel® hardware while maximizing performance. This is done using the Intel® Deep Learning Deployment Toolkit (Intel® DL Deployment Toolkit) included within the OpenVINO™ toolkit with its main components shown below.
+![OV Overview](https://github.com/fritzboyle/openvino-with-fpga-hello-world-face-detection/blob/master/Images/OV%20Overview.png)
+
+The basic flow is:
+1.	Use a tool, such as Caffe, to create and train a CNN inference model
+2.	Run the created model through Model Optimizer to produce an optimized Intermediate Representation (IR) stored in files (.bin and .xml) for use with the Inference Engine
+3.	The User Application then loads and runs models onto devices using the Inference Engine and the IR files
+
+This tutorial will focus on the last step, the User Application and using the Inference Engine to run models on CPU, GPU, FPGA and Myriad.
+## Using the Inference Engine
+Below is a more detailed view of the User Application and Inference Engine:
+![IE Graphic](https://github.com/fritzboyle/openvino-with-fpga-hello-world-face-detection/blob/master/Images/IE%20graphic.png)
+
+The Inference Engine includes a plugin library for each supported device that has been optimized for the Intel® hardware device CPU, GPU, FPGA and Myriad. From here, we will use the terms "device" and “plugin” with the assumption that one infers the other (e.g. CPU device infers the CPU plugin and vice versa). As part of loading the model, the User Application tells the Inference Engine which device to target which in turn loads the associated plugin library to later run on the associated device. The Inference Engine uses “blobs” for all data exchanges, basically arrays in memory arranged according the input and output data of the model.
+![face_detection](https://github.com/fritzboyle/openvino-with-fpga-hello-world-face-detection/blob/master/Images/face_detection.png)
+
+In this Face Detection sample, the model estimates the head pose based on the face image it is given. The face detection model estimates the age, gender and head pose estimation. After the head pose model has processed the face, the application will draw a set of axes over the face, indicating the Yaw, Pitch, and Roll orientation of the head. A sample output showing the results where the three axes appears below. The metrics reported also include the time to run the head pose model.
+
+![face_detection_overlay](https://github.com/fritzboyle/openvino-with-fpga-hello-world-face-detection/blob/master/Images/face_detection_overlay.png)
+
+In the image above, the three axes intersect in the center of the head. The blue line represents Roll, and it extends from the center of the head to the front and the back of the head. The red line represents Pitch, and is drawn from the center of the head to the left ear. The green line represents Yaw, and is drawn from the center of the head to the top of the head.
+
+For details about the models see the Full Tutorial: https://github.com/intel-iot-devkit/inference-tutorials-generic/blob/openvino_toolkit_r3_0/face_detection_tutorial/step_4/Readme.md#introduction
+
+Now let us build and run the complete application and see how it runs all three analysis models.
