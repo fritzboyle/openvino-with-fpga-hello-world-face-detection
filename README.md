@@ -4,9 +4,9 @@
 
 # Table of Contents
 
+<div class="table-of-contents"><ul><li><a href="#openvino-with-fpga-hello-world-face-detection-exercise">OpenVINO with FPGA Hello World Face Detection Exercise</a></li><li><a href="#table-of-contents">Table of Contents</a></li><li><a href="#introduction">Introduction</a></li><li><a href="#getting-started">Getting Started</a><ul><li><a href="#prerequisites">Prerequisites</a></li><li><a href="#downloading-the-tutorial-from-the-git-repository">Downloading the Tutorial from the Git Repository</a><ul><li><a href="#option-1-using-git-clone-to-clone-the-entire-repository">Option #1: Using Git Clone to Clone the Entire Repository</a></li><li><a href="#option-2-using-svn-export-to-download-only-this-tutorial">Option #2: Using SVN Export to Download Only This Tutorial</a></li><li><a href="#tutorial-files">Tutorial FIles</a></li></ul></li><li><a href="#openvino-toolkit-overview-and-terminology">OpenVINO™ Toolkit Overview and Terminology</a><ul><li><a href="#using-the-inference-engine">Using the Inference Engine</a><ul><li><a href="#face-detection-sample">Face Detection Sample</a></li></ul></div>
 
-
-##Introduction
+## Introduction
 
 The purpose of this tutorial is to examine a sample application that was created using the Open Visual Inference & Neural Network Optimization (OpenVINO™) toolkit. The application is able to run inference models on the CPU, and optionally (must be available), GPU and VPU devices to process images. The models can be used to process video from an optional USB camera, an existing video file, or still image files. To do that, we will download the latest Face Detection Tutorial from GitHub and then walk through the sample code for each step before compiling and running on the the available hardware.
 
@@ -94,6 +94,7 @@ Below is a more detailed view of the User Application and Inference Engine:
 The Inference Engine includes a plugin library for each supported device that has been optimized for the Intel® hardware device CPU, GPU, FPGA and Myriad. From here, we will use the terms "device" and “plugin” with the assumption that one infers the other (e.g. CPU device infers the CPU plugin and vice versa). As part of loading the model, the User Application tells the Inference Engine which device to target which in turn loads the associated plugin library to later run on the associated device. The Inference Engine uses “blobs” for all data exchanges, basically arrays in memory arranged according the input and output data of the model.
 ![face_detection](https://github.com/fritzboyle/openvino-with-fpga-hello-world-face-detection/blob/master/Images/face_detection.png)
 
+## Face Detection Sample
 In this Face Detection sample, the model estimates the head pose based on the face image it is given. The face detection model estimates the age, gender and head pose estimation. After the head pose model has processed the face, the application will draw a set of axes over the face, indicating the Yaw, Pitch, and Roll orientation of the head. A sample output showing the results where the three axes appears below. The metrics reported also include the time to run the head pose model.
 
 ![face_detection_overlay](https://github.com/fritzboyle/openvino-with-fpga-hello-world-face-detection/blob/master/Images/face_detection_overlay.png)
