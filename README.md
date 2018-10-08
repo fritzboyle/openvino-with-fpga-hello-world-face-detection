@@ -122,7 +122,7 @@ Now let us build and run the complete application and see how it runs all three 
 Open up a terminal (such as xterm) or use an existing terminal to get to a command shell prompt.
 Change to the directory containing the Hello World files:
 ```
-cd Downloads/tutorial
+cd dx_face_detection
 ```
 
 First, we source variables in case it wasn’t done since the last reboot
