@@ -55,9 +55,8 @@ cd tutorials
 ```
 3.	Clone the repository:
 git clone https://github.com/fritzboyle/openvino-with-fpga-hello-world-face-detection
-4.	Change to the top git repository and check out correct version:
-cd **TBD**
-5.	Change to the face detection tutorial folder:
+
+4.	Change to the face detection tutorial folder:
 ```
 cd openvino-with-fpga-hello-world-face-detection
 ```
@@ -77,16 +76,19 @@ svn export https://github.com/fritzboyle/openvino-with-fpga-hello-world-face-det
 ```
 cd openvino-with-fpga-hello-world-face-detection
 ```
+Extract the dx_face_detection.tgz file
+```
+tar xvzf dx_face_detection.tgz
+```
 Now that we have all the files for the Face Detection Tutorial, we can take some time to look through them to see what each part of the tutorial will demonstrate.
 # Tutorial Files
 In the "Tutorial" directory you will see:
+* Images\  - images for the Readme.md
 * cmake\ - Common CMake files
-* data\ - Image, video, model, etc. data files used with this tutorial
-* doc_support\ - Supporting documentation files including images, etc.
-* scripts\ - Common helper scripts
+* dx_face_detection\  - folder contains code to help run the scripts
 * Readme.md - The top level of this tutorial (this page)
-* Images/  - images for the Readme.md
-* Others? **FROM DAVID’S FILE**
+
+* Others? **additional explanations?**
 
 # OpenVINO™ Toolkit Overview and Terminology
 Let us begin with a brief overview of the OpenVINO™ toolkit and what this tutorial will be covering. The OpenVINO™ toolkit enables the quick deployment of convolutional neural networks (CNN) for heterogeneous execution on Intel® hardware while maximizing performance. This is done using the Intel® Deep Learning Deployment Toolkit (Intel® DL Deployment Toolkit) included within the OpenVINO™ toolkit with its main components shown below.
