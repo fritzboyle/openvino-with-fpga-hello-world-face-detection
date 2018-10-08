@@ -54,7 +54,9 @@ mkdir tutorials
 cd tutorials
 ```
 3.	Clone the repository:
+```
 git clone https://github.com/fritzboyle/openvino-with-fpga-hello-world-face-detection
+```
 
 4.	Change to the face detection tutorial folder:
 ```
