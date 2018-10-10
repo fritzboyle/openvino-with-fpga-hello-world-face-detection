@@ -30,7 +30,7 @@ Target and development platforms meeting the requirements described in the "Syst
 **Note:** While writing this tutorial, an Intel® i7-7700 (CPU with GPU) was used as both the development and target platform.
 Optional:
 * Intel® Movidius™ Neural Compute Stick
-* USB UVC camera
+* [Optional] USB UVC camera
 * GPU support
 ### Software
 * OpenVINO™ toolkit supported Linux operating system. This tutorial was run on 64-bit Ubuntu 16.04.3 LTS updated to kernel 4.14.20 following the OpenVINO™ toolkit installation instructions.
