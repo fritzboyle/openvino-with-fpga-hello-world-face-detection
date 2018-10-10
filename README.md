@@ -27,10 +27,9 @@ Download/clone will include the dx_face_detection zip file
 A summary of what is needed:
 ### Hardware
 Target and development platforms meeting the requirements described in the "System Requirements" section of the OpenVINO™ toolkit documentation which may be found at: https://software.intel.com/openvino-toolkit
-**Note:** While writing this tutorial, an Intel® i7-7700 (CPU with GPU) was used as both the development and target platform.
+**Note:** While writing this tutorial, an Intel® i7-7700 (CPU with GPU & Intel® Arria® 10 GX FPGA Development Kit) was used as both the development and target platform.
 Optional:
 * Intel® Movidius™ Neural Compute Stick
-* [Optional] USB UVC camera
 * GPU support
 ### Software
 * OpenVINO™ toolkit supported Linux operating system. This tutorial was run on 64-bit Ubuntu 16.04.3 LTS updated to kernel 4.14.20 following the OpenVINO™ toolkit installation instructions.
@@ -86,6 +85,7 @@ Now that we have all the files for the Face Detection Tutorial, we can take some
 # Tutorial Files
 In the "Tutorial" directory you will see:
 * Images\  - images for the Readme.md
+* Videos\ - media file for running the inference
 * cmake\ - Common CMake files
 * dx_face_detection\  - folder contains code to help run the scripts
 * Readme.md - The top level of this tutorial (this page)
@@ -192,7 +192,7 @@ You will see rectangles and the head pose axes that follow the faces around the 
 
 **Example 1 Full command**
 ```
-build/intel64/Release/face_detection_tutorial -i /home/vino/Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP32/face-detection-retail-0004.xml -d CPU
+build/intel64/Release/face_detection_tutorial -i /home/<user>/Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP32/face-detection-retail-0004.xml -d CPU
 ```
 
 
@@ -203,7 +203,7 @@ build/intel64/Release/face_detection_tutorial -i /home/vino/Videos/head-pose-fac
 
 **Example 2 Full command**
 ```
-build/intel64/Release/face_detection_tutorial -i /home/vino/Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP16/face-detection-retail-0004.xml -d HETERO:FPGA,CPU
+build/intel64/Release/face_detection_tutorial -i /home/<user>/Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP16/face-detection-retail-0004.xml -d HETERO:FPGA,CPU
 ```
 
 ## Example 3 - Run face detection and age/gender recognition
@@ -212,7 +212,7 @@ build/intel64/Release/face_detection_tutorial -i /home/vino/Videos/head-pose-fac
 ```
 
 **Example 3 Full command**
-```build/intel64/Release/face_detection_tutorial -i /home/vino/Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP16/face-detection-retail-0004.xml -m_ag /opt/intel/computer_vision_sdk/deployment_tools/intel_models/age-gender-recognition-retail-0013/FP16/age-gender-recognition-retail-0013.xml -d HETERO:FPGA,CPU -d_ag GPU
+```build/intel64/Release/face_detection_tutorial -i /home/<user>/Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP16/face-detection-retail-0004.xml -m_ag /opt/intel/computer_vision_sdk/deployment_tools/intel_models/age-gender-recognition-retail-0013/FP16/age-gender-recognition-retail-0013.xml -d HETERO:FPGA,CPU -d_ag GPU
 ```
 
 ## Example 4 - Run face detection, age/gender recognition, and head pose estimation
@@ -222,7 +222,7 @@ build/intel64/Release/face_detection_tutorial -i /home/vino/Videos/head-pose-fac
 
 **Example 4 Full command**
 ```
-build/intel64/Release/face_detection_tutorial -i /home/vino/Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP16/face-detection-retail-0004.xml -m_ag /opt/intel/computer_vision_sdk/deployment_tools/intel_models/age-gender-recognition-retail-0013/FP16/age-gender-recognition-retail-0013.xml -m_hp /opt/intel/computer_vision_sdk/deployment_tools/intel_models/head-pose-estimation-adas-0001/FP32/head-pose-estimation-adas-0001.xml -d HETERO:FPGA,CPU -d_ag GPU -d_hp CPU
+build/intel64/Release/face_detection_tutorial -i /home/<user>/Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP16/face-detection-retail-0004.xml -m_ag /opt/intel/computer_vision_sdk/deployment_tools/intel_models/age-gender-recognition-retail-0013/FP16/age-gender-recognition-retail-0013.xml -m_hp /opt/intel/computer_vision_sdk/deployment_tools/intel_models/head-pose-estimation-adas-0001/FP32/head-pose-estimation-adas-0001.xml -d HETERO:FPGA,CPU -d_ag GPU -d_hp CPU
 ```
 
 
@@ -233,18 +233,7 @@ build/intel64/Release/face_detection_tutorial -i /home/vino/Videos/head-pose-fac
 
 **Example 5 Full command**
 ```
-build/intel64/Release/face_detection_tutorial -i /home/vino/Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP32/face-detection-retail-0004.xml -m_ag /opt/intel/computer_vision_sdk/deployment_tools/intel_models/age-gender-recognition-retail-0013/FP32/age-gender-recognition-retail-0013.xml -m_hp /opt/intel/computer_vision_sdk/deployment_tools/intel_models/head-pose-estimation-adas-0001/FP32/head-pose-estimation-adas-0001.xml -d CPU -d_ag CPU -d_hp CPU
+build/intel64/Release/face_detection_tutorial -i /home/<user>/Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP32/face-detection-retail-0004.xml -m_ag /opt/intel/computer_vision_sdk/deployment_tools/intel_models/age-gender-recognition-retail-0013/FP32/age-gender-recognition-retail-0013.xml -m_hp /opt/intel/computer_vision_sdk/deployment_tools/intel_models/head-pose-estimation-adas-0001/FP32/head-pose-estimation-adas-0001.xml -d CPU -d_ag CPU -d_hp CPU
 ```
 
 **NOTE:** The FPGA plugin does NOT support the head pose model.  If specified, it will be replaced with CPU.
-
-**Optional:** Finally, if a USB camera has been setup, we can use the application to view live video from the connected USB camera. The camera is the default source, so we do this by running the application without using any parameters.
-
-```
-./intel64/Release/face_detection_tutorial -m $mFDA32 -m_ag $mAG32 -m_hp $mHP32 -i cam
-```
-Or we can still specify the camera using "cam":
-```
-./intel64/Release/face_detection_tutorial -m $mFDA32 -m_ag $mAG32 -m_hp $mHP32
-```
-Again, you will see colored rectangles drawn around any faces that appear in the images along with the results for age, gender, the axes representing the head poses, and the various render statistics.
