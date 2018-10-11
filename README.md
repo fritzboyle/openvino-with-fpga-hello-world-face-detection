@@ -66,7 +66,7 @@ cd openvino-with-fpga-hello-world-face-detection
 1.	Bring up a command shell prompt by opening a terminal (such as xterm) or selecting a terminal that is already open.
 2.	Create a "tutorials" directory where we can download the Face Detection tutorial and then change to it:
 ```
-mkdir -p tutorials/openvino-with-fpga-hello-world-face-detection
+mkdir -p tutorials
 cd tutorials/openvino-with-fpga-hello-world-face-detection
 ```
 3.	Download the  tutorial fromn this repository:
