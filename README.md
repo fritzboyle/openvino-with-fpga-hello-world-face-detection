@@ -156,7 +156,10 @@ We can to move up to the main level directory
 ```
 cd ..
 ```
-
+We will make the script executable
+```
+chmod +x run_fd.sh
+```
 ## Script Description
 We have provided a script that will select the media file, models and hardware to make these easily repeatable. The full commands are provided under each step as well if you would like to explore additional possibilities.
 
