@@ -80,9 +80,9 @@ cd openvino-with-fpga-hello-world-face-detection
 Now that we have all the files for the Face Detection Tutorial, we can take some time to look through them to see what each part of the tutorial will demonstrate.
 # Tutorial Files
 In the "Tutorial" directory you will see:
-* dx_face_detection\ - CMake configuration files commands and a wrapper script
-* Images\  - images for the Readme.md
-* Videos\ - contains a video file for running the inference
+* dx_face_detection/ - CMake configuration files commands and a wrapper script
+* Images/  - images for the Readme.md
+* Videos/ - contains a video file for running the inference
 * Readme.md - The top level of this tutorial (this page)
 
 * Others? **additional explanations?**
