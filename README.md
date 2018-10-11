@@ -190,7 +190,7 @@ You will see rectangles and the head pose axes that follow the faces around the 
 
 **Example 1 Full command**
 ```
-build/intel64/Release/face_detection_tutorial -i /home/<user>/Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP32/face-detection-retail-0004.xml -d CPU
+build/intel64/Release/face_detection_tutorial -i ../Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP32/face-detection-retail-0004.xml -d CPU
 ```
 
 
@@ -201,7 +201,7 @@ build/intel64/Release/face_detection_tutorial -i /home/<user>/Videos/head-pose-f
 
 **Example 2 Full command**
 ```
-build/intel64/Release/face_detection_tutorial -i /home/<user>/Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP16/face-detection-retail-0004.xml -d HETERO:FPGA,CPU
+build/intel64/Release/face_detection_tutorial -i ../Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP16/face-detection-retail-0004.xml -d HETERO:FPGA,CPU
 ```
 
 ## Example 3 - Run face detection and age/gender recognition
@@ -210,7 +210,8 @@ build/intel64/Release/face_detection_tutorial -i /home/<user>/Videos/head-pose-f
 ```
 
 **Example 3 Full command**
-```build/intel64/Release/face_detection_tutorial -i /home/<user>/Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP16/face-detection-retail-0004.xml -m_ag /opt/intel/computer_vision_sdk/deployment_tools/intel_models/age-gender-recognition-retail-0013/FP16/age-gender-recognition-retail-0013.xml -d HETERO:FPGA,CPU -d_ag GPU
+```
+build/intel64/Release/face_detection_tutorial -i ../Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP16/face-detection-retail-0004.xml -m_ag /opt/intel/computer_vision_sdk/deployment_tools/intel_models/age-gender-recognition-retail-0013/FP16/age-gender-recognition-retail-0013.xml -d HETERO:FPGA,CPU -d_ag GPU
 ```
 
 ## Example 4 - Run face detection, age/gender recognition, and head pose estimation
@@ -220,7 +221,7 @@ build/intel64/Release/face_detection_tutorial -i /home/<user>/Videos/head-pose-f
 
 **Example 4 Full command**
 ```
-build/intel64/Release/face_detection_tutorial -i /home/<user>/Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP16/face-detection-retail-0004.xml -m_ag /opt/intel/computer_vision_sdk/deployment_tools/intel_models/age-gender-recognition-retail-0013/FP16/age-gender-recognition-retail-0013.xml -m_hp /opt/intel/computer_vision_sdk/deployment_tools/intel_models/head-pose-estimation-adas-0001/FP32/head-pose-estimation-adas-0001.xml -d HETERO:FPGA,CPU -d_ag GPU -d_hp CPU
+build/intel64/Release/face_detection_tutorial -i ../Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP16/face-detection-retail-0004.xml -m_ag /opt/intel/computer_vision_sdk/deployment_tools/intel_models/age-gender-recognition-retail-0013/FP16/age-gender-recognition-retail-0013.xml -m_hp /opt/intel/computer_vision_sdk/deployment_tools/intel_models/head-pose-estimation-adas-0001/FP32/head-pose-estimation-adas-0001.xml -d HETERO:FPGA,CPU -d_ag GPU -d_hp CPU
 ```
 
 
@@ -231,7 +232,7 @@ build/intel64/Release/face_detection_tutorial -i /home/<user>/Videos/head-pose-f
 
 **Example 5 Full command**
 ```
-build/intel64/Release/face_detection_tutorial -i /home/<user>/Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP32/face-detection-retail-0004.xml -m_ag /opt/intel/computer_vision_sdk/deployment_tools/intel_models/age-gender-recognition-retail-0013/FP32/age-gender-recognition-retail-0013.xml -m_hp /opt/intel/computer_vision_sdk/deployment_tools/intel_models/head-pose-estimation-adas-0001/FP32/head-pose-estimation-adas-0001.xml -d CPU -d_ag CPU -d_hp CPU
+build/intel64/Release/face_detection_tutorial -i ../Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP32/face-detection-retail-0004.xml -m_ag /opt/intel/computer_vision_sdk/deployment_tools/intel_models/age-gender-recognition-retail-0013/FP32/age-gender-recognition-retail-0013.xml -m_hp /opt/intel/computer_vision_sdk/deployment_tools/intel_models/head-pose-estimation-adas-0001/FP32/head-pose-estimation-adas-0001.xml -d CPU -d_ag CPU -d_hp CPU
 ```
 
 **NOTE:** The FPGA plugin does NOT support the head pose model.  If specified, it will be replaced with CPU.
