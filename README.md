@@ -182,6 +182,8 @@ We have provided a script that will select the media file, models and hardware t
 
 You will see rectangles and the head pose axes that follow the faces around the image (if the faces move), accompanied by age and gender results for the faces, and the timing statistics for processing each frame of the video.
 
+When the video finishes, press any key to close the window and see statistics of the trial.
+
 
 ## Example 1 - Run face detection on targeted hardware (CPU):
 ```
