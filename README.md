@@ -67,17 +67,16 @@ cd openvino-with-fpga-hello-world-face-detection
 2.	Create a "tutorials" directory where we can download the Face Detection tutorial and then change to it:
 ```
 mkdir -p tutorials/openvino-with-fpga-hello-world-face-detection
-```
 cd tutorials/openvino-with-fpga-hello-world-face-detection
 ```
-3.	Download the subdirectory for just this tutorial for the specific version from the repository:
+3.	Download the  tutorial fromn this repository:
 ```
 svn export https://github.com/fritzboyle/openvino-with-fpga-hello-world-face-detection
 ```
 4.	Change to the face detection tutorial folder:
 ```
 cd openvino-with-fpga-hello-world-face-detection
-
+```
 Now that we have all the files for the Face Detection Tutorial, we can take some time to look through them to see what each part of the tutorial will demonstrate.
 # Tutorial Files
 In the "Tutorial" directory you will see:
