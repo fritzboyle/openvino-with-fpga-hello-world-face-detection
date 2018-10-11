@@ -1,6 +1,6 @@
 # OpenVINO with FPGA Hello World Face Detection Exercise
 
-**Note:** This tutorial has been written using OpenVINO™ Toolkit for Linux with FPGA Support version 2018 R3.0 and is for use with this version only. Using this tutorial with any other version may not be correct.
+**Note:** This tutorial has been written using OpenVINO™ Toolkit for Linux with FPGA Support version 2018 R3.1 and is for use with this version only. Using this tutorial with any other version may not be correct.
 
 # Table of Contents
 
@@ -85,7 +85,7 @@ Now that we have all the files for the Face Detection Tutorial, we can take some
 # Tutorial Files
 In the "Tutorial" directory you will see:
 * Images\  - images for the Readme.md
-* Videos\ - media file for running the inference
+* Videos\ - contains a video file for running the inference
 * cmake\ - Common CMake files
 * dx_face_detection\  - folder contains code to help run the scripts
 * Readme.md - The top level of this tutorial (this page)
