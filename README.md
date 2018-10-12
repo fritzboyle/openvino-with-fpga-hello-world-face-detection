@@ -47,17 +47,23 @@ That after installing the OpenVINO™ toolkit with FPGA support you have run the
 The first thing we need to do is create a place for the Face Detection tutorial and then download it. To do this, we will create a directory called "tutorials" and use it to store the files that are downloaded from the “OpenVINO FPGA  Hello World Face Detection” GitHub repository. There are two options to download this tutorial: 1) Download as part of the entire repository using “git clone”, or 2) Use “svn export” to download just this tutorial (smaller)
 ### Option #1: Using Git Clone to Clone the Entire Repository
 1.	Bring up a command shell prompt by opening a terminal (such as xterm) or selecting a terminal that is already open.
-2.	Create a "tutorials" directory where we can download the Face Detection tutorial and then change to it:
+2. if you have not installed Git, the install it.
+```
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install git
+```
+3.	Create a "tutorials" directory where we can download the Face Detection tutorial and then change to it:
 ```
 mkdir tutorials
 cd tutorials
 ```
-3.	Clone the repository:
+4.	Clone the repository:
 ```
 git clone https://github.com/fritzboyle/openvino-with-fpga-hello-world-face-detection
 ```
 
-4.	Change to the face detection tutorial folder:
+5.	Change to the face detection tutorial folder:
 ```
 cd openvino-with-fpga-hello-world-face-detection
 ```
