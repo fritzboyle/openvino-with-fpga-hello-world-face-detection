@@ -50,7 +50,6 @@ The first thing we need to do is create a place for the Face Detection tutorial 
 2. if you have not installed Git, the install it.
 ```
 sudo apt-get update
-sudo apt-get upgrade
 sudo apt-get install git
 ```
 3.	Create a "tutorials" directory where we can download the Face Detection tutorial and then change to it:
