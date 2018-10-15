@@ -1,6 +1,6 @@
 # OpenVINO with FPGA Hello World Face Detection Exercise
 
-**Note:** This tutorial has been written using OpenVINO™ Toolkit for Linux with FPGA Support version 2018 R3.1 and is for use with this version only. Using this tutorial with any other version may not be correct.
+**Note:** This tutorial has been written using OpenVINO™ Toolkit for Linux with FPGA Support version 2018 R3.0 and is for use with this version only. Using this tutorial with any other version may not be correct.
 
 # Table of Contents
 
@@ -33,7 +33,7 @@ Optional:
 * GPU support
 ### Software
 * OpenVINO™ toolkit supported Linux operating system. This tutorial was run on 64-bit Ubuntu 16.04.3 LTS updated to kernel 4.14.20 following the OpenVINO™ toolkit installation instructions.
-* The latest OpenVINO™ toolkit with FPGA support installed and verified. This tutorial was written using version 2018 R3.1.
+* The latest OpenVINO™ toolkit with FPGA support installed and verified. This tutorial was written using version 2018 R3.0.
 * At least one utility for downloading from the GitHub repository: Subversion (svn), Git (git), or both
 By now you should have completed the Linux installation guide for the OpenVINO™ toolkit with FPGA support (link), however before continuing, please ensure:
 That after installing the OpenVINO™ toolkit with FPGA support you have run the supplied demo samples
