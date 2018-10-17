@@ -155,6 +155,7 @@ We have provided a script that will select the media file, models and hardware t
 ```
 ./run_fd.sh (face detection hardware) (age/gender hardware) (head pose hardware)
 ```
+EXAMPLE: `./run_fd.sh FPGA CPU GPU`
 
 **Supported Hardware (choose 1 for each option):**
 1. cpu 
