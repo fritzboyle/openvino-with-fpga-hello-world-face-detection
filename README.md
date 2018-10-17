@@ -110,7 +110,7 @@ cd dx_face_detection
 
 First, we source variables in case it wasn’t done since the last reboot
 ```
-source /home/<user>/setup_env.sh
+source /home/<user>/Downloads/fpga_support_files/setup_env.sh
 ```
 
 Now we need to create a directory to build the tutorial in and change to it.
