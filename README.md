@@ -155,7 +155,7 @@ We have provided a script that will select the media file, models and hardware t
 ```
 ./run_fd.sh (face detection hardware) (age/gender hardware) (head pose hardware)
 ```
-EXAMPLE: `./run_fd.sh FPGA CPU GPU`
+EXAMPLE: `./run_fd.sh FPGA FPGA GPU`
 
 **Supported Hardware (choose 1 for each option):**
 1. cpu 
@@ -193,7 +193,7 @@ build/intel64/Release/face_detection_tutorial -i ../Videos/head-pose-face-detect
 build/intel64/Release/face_detection_tutorial -i ../Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP16/face-detection-retail-0004.xml -d HETERO:FPGA,CPU
 ```
 
-## Example 3 - Run face detection and age/gender recognition
+## Example 3 - Run face detection on FPGA and age/gender recognition on GPU
 ```
 ./run_fd.sh fpga gpu
 ```
@@ -203,7 +203,7 @@ build/intel64/Release/face_detection_tutorial -i ../Videos/head-pose-face-detect
 build/intel64/Release/face_detection_tutorial -i ../Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP16/face-detection-retail-0004.xml -m_ag /opt/intel/computer_vision_sdk/deployment_tools/intel_models/age-gender-recognition-retail-0013/FP16/age-gender-recognition-retail-0013.xml -d HETERO:FPGA,CPU -d_ag GPU
 ```
 
-## Example 4 - Run face detection, age/gender recognition, and head pose estimation
+## Example 4 - Run face detection on FPGA, age/gender recognition on GPU, and head pose estimation on CPU
 ```
 ./run_fd.sh fpga gpu cpu
 ```
