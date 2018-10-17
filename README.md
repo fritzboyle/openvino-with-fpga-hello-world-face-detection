@@ -73,8 +73,6 @@ In the "Tutorial" directory you will see:
 * Videos/ - contains a video file for running the inference
 * Readme.md - The top level of this tutorial (this page)
 
-* Others? **additional explanations?**
-
 # OpenVINO™ Toolkit Overview and Terminology
 Let us begin with a brief overview of the OpenVINO™ toolkit and what this tutorial will be covering. The OpenVINO™ toolkit enables the quick deployment of convolutional neural networks (CNN) for heterogeneous execution on Intel® hardware while maximizing performance. This is done using the Intel® Deep Learning Deployment Toolkit (Intel® DL Deployment Toolkit) included within the OpenVINO™ toolkit with its main components shown below.
 ![OV Overview](https://github.com/fritzboyle/openvino-with-fpga-hello-world-face-detection/blob/master/Images/OV%20Overview.png)
