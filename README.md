@@ -4,13 +4,28 @@
 
 # Table of Contents
 
-<div class="table-of-contents"><ul><li><a href="#openvino-with-fpga-hello-world-face-detection-exercise">OpenVINO with FPGA Hello World Face Detection Exercise</a></li><li><a href="#table-of-contents">Table of Contents</a></li><li><a href="#introduction">Introduction</a></li><li><a href="#getting-started">Getting Started</a><ul><li><a href="#prerequisites">Prerequisites</a></li></ul></li><li><a href="#downloading-the-tutorial-from-the-git-repository">Downloading the Tutorial from the Git Repository</a><ul><li><a href="#using-git-clone-to-clone-the-entire-repository">Using Git Clone to Clone the Entire Repository</a></li></ul></li><ul></li></ul><li><a href="#tutorial-files">Tutorial Files</a></li><li><a href="#openvino-toolkit-overview-and-terminology">OpenVINO™ Toolkit Overview and Terminology</a><ul><li><a href="#using-the-inference-engine">Using the Inference Engine</a></li></ul><ul><li><a href="#face-detection-sample">Face Detection Sample</a></li></ul><li><a href="#build">Build</a><li><a href="#running-the-app">Running the App</a></li></ul></div>
+<div class="table-of-contents"><ul>
+<li><a href="#openvino-with-fpga-hello-world-face-detection-exercise">OpenVINO with FPGA Hello World Face Detection Exercise</a></li>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#getting-started">Getting Started</a><ul>
+<li><a href="#prerequisites">Prerequisites</a></li></ul></li>
+<li><a href="#download-the-tutorial-from-the-git-repository">Download the Tutorial from the Git Repository</a><ul>
+<li><a href="#use-git-clone-to-clone-the-entire-repository">Use Git Clone to Clone the Entire Repository</a></li></ul></li><ul></li></ul>
+<li><a href="#tutorial-files">Tutorial Files</a></li>
+<li><a href="#openvino-toolkit-overview-and-terminology">OpenVINO™ Toolkit Overview and Terminology</a><ul>
+<li><a href="#the-inference-engine">The Inference Engine</a></li></ul><ul>
+<li><a href="#face-detection-sample">Face Detection Sample</a></li></ul>
+<li><a href="#build">Build</a>
+<li><a href="#run-the-application">Run the Application</a></li></ul></div>
 
 ## Introduction
 
-The purpose of this tutorial is to examine a sample application that was created using the Open Visual Inference & Neural Network Optimization (OpenVINO™) toolkit. The application is able to run inference models on the CPU, and optionally (must be available), GPU and VPU devices to process images. The models can be used to process video from an existing video file, or still image files. To do that, we will download the latest Face Detection Tutorial from GitHub and then walk through the sample code for each step before compiling and running on the the available hardware.
+The OpenVINO™ toolkit runs inference models using the CPU to process images. As an option, OpenVINO can use GPU and VPU devices, if available. You can use the inference models to process video from an optional USB camera, an existing video file, or still image files. 
 
-This tutorial will start from a base application that can read in image data and output the image to a window. From there, each step adds deep learning models that will process the image data and make inferences. In the final step, the complete application will be able to detect a face, report age and gender for the face, and draw a 3D axis representing the head pose for each face. Before that, some key concepts related to using the OpenVINO™ toolkit will be introduced and later seen along the way within the steps.
+This tutorial examines a sample application that was created with the OpenVINO™ toolkit. The tutorial steps will guide you through downloading the latest Face Detection Tutorial from GitHub, walk you through the sample code, and then compile and run the code on the the available hardware. During the process, you will become familiar with key OpenVINO™ concepts.
+
+This tutorial starts with a base application that reads image data and outputs the image to a window. The steps build on each other by adding deep learning models that process image data and make inferences. In the final step, you will use the completed application to detect faces, report the age and gender of the detected face, and draw a 3D axis representing the head pose for each face.
 
 ## Getting Started
 
@@ -41,49 +56,58 @@ That after installing the OpenVINO™ toolkit with FPGA support you have run the
 * If you have and intend to use a Myriad: You have connected and tested the USB Intel® Movidius™ Neural Compute Stick
 * That your development platform is connected to a network and has Internet access. To download all the files for this tutorial, you will need to access GitHub on the Internet.
 
-## Downloading the Tutorial from the Git Repository
-The first thing we need to do is create a place for the Face Detection tutorial and then download it. To do this, we will create a directory called "tutorials" and use it to store the files that are downloaded from the “OpenVINO FPGA  Hello World Face Detection” GitHub repository. 
-### Using Git Clone to Clone the Entire Repository
+### Required Connectivity
+* Your development platform is connected to a network and has Internet access 
+* You have Github access
+
+## Download the Tutorial from the Git Repository
+In these steps you create a directory to put the files you download from the “OpenVINO FPGA Hello World Face Detection” GitHub repository. 
+### Use Git Clone to Clone the Entire Repository
 1.	Bring up a command shell prompt by opening a terminal (such as xterm) or selecting a terminal that is already open.
-2. if you have not installed Git, the install it.
+2. if you have not installed Git, then install it.
 ```
 sudo apt-get update
 sudo apt-get install git
 ```
-3.	Create a "tutorials" directory where we can download the Face Detection tutorial and then change to it:
+3.	Create a directory named "tutorials"
 ```
 mkdir tutorials
+```
+4. Go to the tutorials directory
+```
 cd tutorials
 ```
-4.	Clone the repository:
+5.	Clone the repository
 ```
 git clone https://github.com/fritzboyle/openvino-with-fpga-hello-world-face-detection
 ```
 
-5.	Change to the face detection tutorial folder:
+6.	Change to the face detection tutorial folder:
 ```
 cd openvino-with-fpga-hello-world-face-detection
 ```
 
-Now that we have all the files for the Face Detection Tutorial, we can take some time to look through them to see what each part of the tutorial will demonstrate.
+You have the Face Detection Tutorial files. The next section shows the directory structure of the files you extracted.
+
 # Tutorial Files
-In the "Tutorial" directory you will see:
-* dx_face_detection/ - CMake configuration files commands and a wrapper script
-* Images/  - images for the Readme.md
-* Videos/ - contains a video file for running the inference
-* Readme.md - The top level of this tutorial (this page)
+The "tutorial" directory contains:
+* Images\ - directory of images
+* Videos\ - directory of videos
+* cmake\ - directory of common CMake files
+* dx_face_detection\  - directory of code to help run the scripts
+* Readme.md - This document
 
 # OpenVINO™ Toolkit Overview and Terminology
-Let us begin with a brief overview of the OpenVINO™ toolkit and what this tutorial will be covering. The OpenVINO™ toolkit enables the quick deployment of convolutional neural networks (CNN) for heterogeneous execution on Intel® hardware while maximizing performance. This is done using the Intel® Deep Learning Deployment Toolkit (Intel® DL Deployment Toolkit) included within the OpenVINO™ toolkit with its main components shown below.
+The OpenVINO™ toolkit enables the quick deployment of Convolutional Neural Networks (CNN) for heterogeneous execution on Intel® hardware while maximizing performance. Deployment is accomplished through the the Intel® Deep Learning Deployment Toolkit (Intel® DL Deployment Toolkit), included within the OpenVINO™ toolkit.
 ![OV Overview](https://github.com/fritzboyle/openvino-with-fpga-hello-world-face-detection/blob/master/Images/OV%20Overview.png)
 
-The basic flow is:
-1.	Use a tool, such as Caffe, to create and train a CNN inference model
-2.	Run the created model through Model Optimizer to produce an optimized Intermediate Representation (IR) stored in files (.bin and .xml) for use with the Inference Engine
-3.	The User Application then loads and runs models onto devices using the Inference Engine and the IR files
+The CNN workflow is:
+1.	Create and train the CNN inference model in a framework, such as Caffe*.
+2.	Use the Model Optimizer on the trained model to produce an optimized Intermediate Representation (IR), stored .bin and .xml files, for use with the Inference Engine.
+3.	Use the Inference Engine with your application to load and run the model on your devices.
 
-This tutorial will focus on the last step, the User Application and using the Inference Engine to run models on CPU, GPU, FPGA and Myriad.
-## Using the Inference Engine
+This tutorial focuses on the last step in the workflow: using the user application the Inference Engine to run models on a CPU, GPU, FPGA, and Movidius™ Neural Compute Stick.
+## The Inference Engine
 Below is a more detailed view of the User Application and Inference Engine:
 ![IE Graphic](https://github.com/fritzboyle/openvino-with-fpga-hello-world-face-detection/blob/master/Images/IE%20graphic.png)
 
@@ -99,56 +123,56 @@ In the image above, the three axes intersect in the center of the head. The blue
 
 For details about the models see the Full Tutorial: https://github.com/intel-iot-devkit/inference-tutorials-generic/blob/openvino_toolkit_r3_0/face_detection_tutorial/step_4/Readme.md#introduction
 
-Now let us build and run the complete application and see how it runs all three analysis models.
+In the next section, you build and run the application, and see how it runs the three analysis models.
 
 # Build
-Open up a terminal (such as xterm) or use an existing terminal to get to a command shell prompt.
-Change to the directory containing the Hello World files:
+1.	Use a terminal window to access a command shell prompt.
+
+2.	Go the directory containing the Hello World files
 ```
 cd dx_face_detection
 ```
-
-First, we source variables in case it wasn’t done since the last reboot
+3.	Source the variables
 ```
 source /home/<user>/Downloads/fpga_support_files/setup_env.sh
 ```
-
-Now we need to create a directory to build the tutorial in and change to it.
+4.	Create a directory to build the tutorial
 ```
 mkdir build
+```
+5.	Go to the build directory
+```
 cd build
 ```
-
-The last thing we need to do before compiling is to configure the build settings and build the executable. We do this by running CMake to set the build target and file locations. Then, we run Make to build the executable.
+6.	Run CMake to set the build target and file locations
 
 ```
 cmake -DCMAKE_BUILD_TYPE=Release ..
+```
+7.	Build the executable
+```
 make
 ```
-
-**Optional:**We could instead run the make this using the following command to run across multiple pieces of hardware and speed up the process
+**Alternative make command:** Run make across multiple pieces of hardware to speed the process
 ```
 make -j $(nproc)
 ```
-
-To prepare for running on the FPGA, we should load a bitstream that works well for object detection. OpenVINO Toolkit with support for FPGA includes some that we can use.
-
-We will program the bitstream with the command:
+8.	Load a bitstream that works well for object detection. The OpenVINO toolkit with support for FPGA includes bitstreams.
 ```
 aocl program acl0 /opt/intel/computer_vision_sdk_fpga_2018.3.343/a10_devkit_bitstreams/2-0-1_A10DK_FP11_ResNet50-101.aocx
 ```
-# Running the App
-We can to move up to the main level directory
+
+# Run the Application
+1.	Go to the main level directory
 ```
 cd ..
 ```
-We will make the script executable
+2.	Turn the script into an executable file
 ```
 chmod +x run_fd.sh
 ```
 ## Script Description
-We have provided a script that will select the media file, models and hardware to make these easily repeatable. The full commands are provided under each step as well if you would like to explore additional possibilities.
-
+This tutorial includes a script to select the media file, models and hardware. The script commands are provided under each step to provide the opportunity to explore other possibilities.
 `run_fd.sh` requires at least one hardware target, and supports up to 3
 
 ### How To Use:
@@ -157,7 +181,7 @@ We have provided a script that will select the media file, models and hardware t
 ```
 EXAMPLE: `./run_fd.sh fpga fpga gpu`
 
-**Supported Hardware (choose 1 for each option):**
+**Choose a hardware component for each argument you use**
 1. cpu 
 2. gpu 
 3. fpga 
@@ -193,7 +217,7 @@ build/intel64/Release/face_detection_tutorial -i ../Videos/head-pose-face-detect
 build/intel64/Release/face_detection_tutorial -i ../Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP16/face-detection-retail-0004.xml -d HETERO:FPGA,CPU
 ```
 
-## Example 3 - Run face detection on FPGA and age/gender recognition on GPU
+## Example 3 - Run face detection on FPGA with age/gender recognition on GPU
 ```
 ./run_fd.sh fpga gpu
 ```
@@ -203,7 +227,7 @@ build/intel64/Release/face_detection_tutorial -i ../Videos/head-pose-face-detect
 build/intel64/Release/face_detection_tutorial -i ../Videos/head-pose-face-detection-female-and-male.mp4 -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-retail-0004/FP16/face-detection-retail-0004.xml -m_ag /opt/intel/computer_vision_sdk/deployment_tools/intel_models/age-gender-recognition-retail-0013/FP16/age-gender-recognition-retail-0013.xml -d HETERO:FPGA,CPU -d_ag GPU
 ```
 
-## Example 4 - Run face detection on FPGA, age/gender recognition on GPU, and head pose estimation on CPU
+## Example 4 - Run face detection on FPGA, age/gender recognition on a GPU, and head pose estimation on a CPU
 ```
 ./run_fd.sh fpga gpu cpu
 ```
