@@ -169,7 +169,8 @@ endif()
 #add_subdirectory(style_transfer_sample)
 
 if (NEED_EXTENSIONS)
-    add_subdirectory(${InferenceEngine_Samples_DIR}/extension ${CMAKE_CURRENT_BINARY_DIR}/extension)
+    #add_subdirectory(${InferenceEngine_Samples_DIR}/src/extension ${CMAKE_CURRENT_BINARY_DIR}/extension)
+	#add_subdirectory("/opt/intel/computer_vision_sdk/deployment_tools/inference_engine/src/extension/" ${CMAKE_CURRENT_BINARY_DIR}/extension)
 endif()
 
 #if (OpenCV_FOUND)

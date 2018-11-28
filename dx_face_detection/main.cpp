@@ -39,10 +39,14 @@
 #include <samples/slog.hpp>
 
 #include "face_detection.hpp"
-#include "mkldnn/mkldnn_extension_ptr.hpp"
+//#include "mkldnn/mkldnn_extension_ptr.hpp"		// deprecated 4.20
 #include <ext_list.hpp>
 
+
 #include <opencv2/opencv.hpp>
+#include <opencv2/videoio/videoio_c.h>				// added for 4.20, defs 
+#include <ie_precision.hpp>							// added for 4.20
+#include <ie_cnn_net_reader.h>						// added for 4.20
 
 using namespace InferenceEngine;
 
@@ -660,7 +664,8 @@ int main(int argc, char *argv[]) {
 
                 if (!FLAGS_l.empty()) {
                     // CPU(MKLDNN) extensions are loaded as a shared library and passed as a pointer to base extension
-                    auto extension_ptr = make_so_pointer<InferenceEngine::MKLDNNPlugin::IMKLDNNExtension>(FLAGS_l);
+                    //auto extension_ptr = make_so_pointer<InferenceEngine::MKLDNNPlugin::IMKLDNNExtension>(FLAGS_l);		// 4.20
+                    auto extension_ptr = make_so_pointer<IExtension>(FLAGS_l);												// 4.20
                     plugin.AddExtension(std::static_pointer_cast<IExtension>(extension_ptr));
                 }
             } else if (!FLAGS_c.empty()) {
@@ -693,9 +698,11 @@ int main(int argc, char *argv[]) {
 
         int totalFrames = 1;  // cap.read() above
         double ocv_decode_time = 0, ocv_render_time = 0;
-        bool firstFrame = true;
 		float fdFpsTot = 0.0; 
 		float otherTotFps = 0.0; 
+
+		double ocv_ttl_render = 0;
+		double ocv_ttl_decode = 0;
 
 		wallclockStart = std::chrono::high_resolution_clock::now();
         /** Start inference & calc performance **/
@@ -790,6 +797,9 @@ int main(int argc, char *argv[]) {
             }
 
             // ----------------------------Processing outputs-----------------------------------------------------
+			ocv_ttl_render += ocv_render_time;
+			ocv_ttl_decode += ocv_decode_time;
+
             std::ostringstream out;
             out << "OpenCV cap/render time: " << std::fixed << std::setprecision(2)
                 << (ocv_decode_time + ocv_render_time) << " ms";
@@ -857,15 +867,15 @@ int main(int argc, char *argv[]) {
                               cv::Scalar(0, 255, 0);
                 cv::rectangle(frame, faceResult.location, genderColor, 2);
             }
+
             int keyPressed;
-            if (-1 != (keyPressed = cv::waitKey(1)))
-            {
+            if (-1 != (keyPressed = cv::waitKey(1))) {
             	// done processing, save time
             	wallclockEnd = std::chrono::high_resolution_clock::now();
 
             	if ('s' == keyPressed) {
             		// save screen to output file
-            		slog::info << "Saving snapshot of image" << slog::endl;
+            		slog::info << "Saving screenshot" << slog::endl;
             		cv::imwrite("snapshot.bmp", frame);
             	} else {
             		break;
@@ -873,9 +883,9 @@ int main(int argc, char *argv[]) {
             }
 
             t0 = std::chrono::high_resolution_clock::now();
-            if (!FLAGS_no_show) {
+            if (!FLAGS_no_show)
                 cv::imshow("Detection results", frame);
-            }
+
             t1 = std::chrono::high_resolution_clock::now();
             ocv_render_time = std::chrono::duration_cast<ms>(t1 - t0).count();
 
@@ -886,23 +896,17 @@ int main(int argc, char *argv[]) {
             	wallclockEnd = std::chrono::high_resolution_clock::now();
 
 				if (!FLAGS_no_wait && !FLAGS_no_show) {
-                    slog::info << "Press 's' key to save a snapshot, press any other key to exit" << slog::endl;
+                    slog::info << "Press 's' key to save a screenshot, press any other key to exit" << slog::endl;
                     while (cv::waitKey(0) == 's') {
                 		// save screen to output file
-                		slog::info << "Saving snapshot of image" << slog::endl;
-                		cv::imwrite("snapshot.bmp", frame);
+                		slog::info << "Saving screenshot of image" << slog::endl;
+                		cv::imwrite("screenshot.bmp", frame);
                     }
                 }
                 break;
             }
             frame = newFrame;  // shallow copy
 			totalFrames++;
-
-            if (firstFrame) {
-                slog::info << "Press 's' key to save a snapshot, press any other key to stop" << slog::endl;
-            }
-
-            firstFrame = false;
         }
 
 		float avgFdFps = fdFpsTot/totalFrames;
@@ -912,19 +916,38 @@ int main(int argc, char *argv[]) {
         ms total_wallclock_time = std::chrono::duration_cast<ms>(wallclockEnd - wallclockStart);
 
         // report loop time
-		slog::info << "     Total main-loop time:" << std::fixed << std::setprecision(2)
-				<< total_wallclock_time.count() << " ms " <<  slog::endl;
-		slog::info << "           Total # frames:" << totalFrames <<  slog::endl;
 		float avgTimePerFrameMs = total_wallclock_time.count() / (float)totalFrames;
-		slog::info << "   Average time per frame:" << std::fixed << std::setprecision(2)
+
+		std::string na(80, '=');
+		std::string nb(80, '-');
+		std::cout << na << std::endl;
+
+		slog::info << "   Total main-loop time: " << std::fixed << std::setprecision(2)
+				<< total_wallclock_time.count() << " ms " <<  slog::endl;
+		slog::info << "     Total number of frames: " << totalFrames <<  slog::endl;
+
+		std::cout << nb << std::endl;
+
+		// Debug - OCV Times
+		slog::info << "     Total OpenCV Render Time: " << ocv_ttl_render << " (" << (ocv_ttl_render / total_wallclock_time.count()) * 100 << "%)" << slog::endl;
+		slog::info << "     Total OpenCV Decode Time: " << ocv_ttl_decode <<  " (" << (ocv_ttl_decode / total_wallclock_time.count()) * 100 << "%)" << slog::endl;
+
+		slog::info << "     Avg OpenCV Render Time: " << std::fixed << std::setprecision(2) << ocv_ttl_render/totalFrames <<  "ms" << slog::endl;
+		slog::info << "     Avg OpenCV Decode Time: " << std::fixed << std::setprecision(2) << ocv_ttl_decode/totalFrames <<  "ms" << slog::endl;
+
+		std::cout << nb << std::endl;
+
+		slog::info << "   Average time per frame:           " << std::fixed << std::setprecision(2)
 					<< avgTimePerFrameMs << " ms "
 					<< "(" << 1000.0f / avgTimePerFrameMs << " fps)" << slog::endl;
 
-		slog::info << "   Average Face Detection FPS: " << std::fixed << std::setprecision(2)
+		slog::info << "   Average Face Detection FPS:       " << std::fixed << std::setprecision(2)
 					<< avgFdFps << " fps" << slog::endl;
 
 		slog::info << "   Average Age/Gender/Head Pose FPS: " << std::fixed << std::setprecision(2)
 					<< avgAGHpFps << " fps" << slog::endl;
+
+		std::cout << nb << std::endl;
 
         // ---------------------------Some perf data--------------------------------------------------
         if (FLAGS_pc) {
@@ -932,12 +955,11 @@ int main(int argc, char *argv[]) {
             AgeGender.printPerformanceCounts();
             HeadPose.printPerformanceCounts();
         }
-    }
-    catch (const std::exception& error) {
+
+    } catch (const std::exception& error) {
         slog::err << error.what() << slog::endl;
         return 1;
-    }
-    catch (...) {
+    } catch (...) {
         slog::err << "Unknown/internal exception happened." << slog::endl;
         return 1;
     }

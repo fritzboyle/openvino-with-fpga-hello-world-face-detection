@@ -46,8 +46,16 @@ file (GLOB MAIN_HEADERS
 source_group("src" FILES ${MAIN_SRC})
 source_group("include" FILES ${MAIN_HEADERS})
 
-include_directories (${OpenCV_INCLUDE_DIRS})
-link_directories(${LIB_FOLDER})
+include_directories (
+	${OpenCV_INCLUDE_DIRS}
+	#/opt/intel/computer_vision_sdk/inference_engine/src/extension
+	/opt/intel/computer_vision_sdk/deployment_tools/inference_engine/src/extension
+	/opt/intel/computer_vision_sdk/deployment_tools/inference_engine/include/cpp/
+)
+link_directories(
+	${LIB_FOLDER}
+	/opt/intel/computer_vision_sdk_2018.4.420/deployment_tools/inference_engine/lib/ubuntu_16.04/intel64
+)
 
 # Create library file from sources.
 add_executable(${TARGET_NAME} ${MAIN_SRC} ${MAIN_HEADERS})
@@ -58,8 +66,8 @@ set_target_properties(${TARGET_NAME} PROPERTIES "CMAKE_CXX_FLAGS" "${CMAKE_CXX_F
 COMPILE_PDB_NAME ${TARGET_NAME})
 
 
-target_link_libraries(${TARGET_NAME} format_reader cpu_extension ${IE_LIBRARIES} gflags)
+target_link_libraries(${TARGET_NAME} format_reader ${IE_LIBRARIES} gflags)
 
 if(UNIX)
-    target_link_libraries( ${TARGET_NAME} ${LIB_DL} pthread ${OpenCV_LIBRARIES})
+    target_link_libraries( ${TARGET_NAME} inference_engine  cpu_extension_avx2 ${LIB_DL} pthread ${OpenCV_LIBRARIES})
 endif()
