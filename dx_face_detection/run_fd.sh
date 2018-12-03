@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/inference_engine_samples/intel64/Release/lib/
+
 get_params() {
   hw="CPU"
   het="HETERO:FPGA,CPU"
