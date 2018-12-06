@@ -157,10 +157,17 @@ make
 ```
 make -j $(nproc)
 ```
-8.	Load a bitstream that works well for object detection. The OpenVINO toolkit with support for FPGA includes bitstreams.
+8.	Load a bitstream that works well for object detection. The OpenVINO toolkit with support for FPGA includes bitstreams. There are two options:
+
+* One is for the Arria 10 GX Development Kit:
 ```
 aocl program acl0 /opt/intel/computer_vision_sdk_fpga_2018.3.343/a10_devkit_bitstreams/2-0-1_A10DK_FP11_ResNet50-101.aocx
 ```
+* The bitstream for the Intel® Vision Accelerator Design with Intel® Arria® 10 FPGA (IEI Mustang-F100-A10)
+```
+aocl program acl0 /opt/intel/computer_vision_sdk_2018.4.420/bitstreams/a10_vision_design_bitstreams/4-0_PL1_FP11_MobileNet_ResNet_VGG_Clamp.aocx
+```
+
 
 # Run the Application
 1.	Go to the main level directory
