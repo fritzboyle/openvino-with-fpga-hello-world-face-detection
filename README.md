@@ -180,7 +180,7 @@ chmod +x run_fd.sh
 ```
 ## Script Description
 This tutorial includes a script to select the media file, models and hardware. The script commands are provided under each step to provide the opportunity to explore other possibilities.
-`run_fd.sh` requires at least one hardware target, and supports up to 3
+`run_fd.sh` requires at least one hardware target, and supports up to 3.
 
 ### How To Use:
 ```
