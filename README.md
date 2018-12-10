@@ -30,7 +30,7 @@ This tutorial starts with a base application that reads image data and outputs t
 ## Getting Started
 
 ### Prerequisites
-To run the application in this tutorial, the OpenVINO™ toolkit for Linux with FPGA and its dependencies must already be installed and verified using the included demos. Installation instructions may be found at: https://software.intel.com/en-us/articles/openvino-install-test-linux-fpga
+To run the application in this tutorial, the OpenVINO™ toolkit for Linux with FPGA and its dependencies must already be installed and verified using the included demos. Installation instructions may be found at: https://software.intel.com/en-us/articles/OpenVINO-Install-Linux-FPGA
 If to be used, any optional hardware must also be installed and verified including:
 * Intel® Arria® 10 GX FPGA Development Kit or the Intel® Programmable Acceleration Card with Intel® Arria® 10 GX FPGA 
 * GPU - normally embedded with supported Intel® CPUs and requires drivers and updated Linux kernel to run
