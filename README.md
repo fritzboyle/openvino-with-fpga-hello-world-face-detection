@@ -1,3 +1,7 @@
+# DISCONTINUATION OF PROJECT #
+This project will no longer be maintained by Intel.
+Intel has ceased development and contributions including, but not limited to, maintenance, bug fixes, new releases, or updates, to this project.
+Intel no longer accepts patches to this project.
 # OpenVINO with FPGA Hello World Face Detection Exercise
 
 **Note:** This tutorial has been written using OpenVINO™ Toolkit for Linux with FPGA Support version 2018 R3 and is for use with this version only. Using this tutorial with any other version may not be correct.
